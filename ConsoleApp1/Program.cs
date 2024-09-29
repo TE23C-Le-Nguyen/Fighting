@@ -12,7 +12,7 @@ int charizardhp = 200;
 int victinyhp = 500;
 int mewhp = 1000;
 int giratinahp = 5000;
-int diddyhp = 100;
+
 
 int caterpiehp = 80;
 int beedrillhp = 100;
@@ -31,17 +31,22 @@ string giratina = "Giratina";
 
 
 string name;
-int damageMax1 = 0;
-int damageMax2 = 0;
-int damageMax3 = 0;
-int damageMax4 = 0;
-int damageMax5 = 0;
-int damageMax6 = 0;
-int damageMax7 = 0;
-int damageMax8 = 0;
-int damageMax9 = 0;
-int damageMax10 = 0;
-int damageMax11 = 0;
+
+
+
+
+int pikachudamageMax = 20;
+int scissordamageMax = 30;
+int charizarddamageMax = 50;
+int victinydamageMax = 100;
+int mewdamageMax = 300;
+int giratinadamageMax = 1000;
+
+int caterpiedamageMax = 10;
+int beedrilldamageMax = 20;
+int pinsirdamageMax = 40;
+int sneaseldamageMax = 50;
+int sceptiledamageMax = 80;
 
 
 Console.WriteLine("Skriv in ditt namn");
@@ -49,7 +54,7 @@ name = Console.ReadLine();
 Console.WriteLine($" {name} is wandering in the forest with their pokemon until they encouter a wild pokemon");
 
 string enemyName = "";
-
+int enemydamageMax;
 int enemyHp;
 
 
@@ -60,6 +65,7 @@ if (randompokemon == 1)
     Console.ReadLine();
     enemyHp = caterpiehp;
     enemyName = "Caterpie";
+    enemydamageMax = caterpiedamageMax;
 }
 else if (randompokemon == 2)
 {
@@ -67,6 +73,7 @@ else if (randompokemon == 2)
     Console.ReadLine();
     enemyHp = beedrillhp;
     enemyName = "Beedrill";
+    enemydamageMax = beedrilldamageMax;
 }
 else if (randompokemon == 3)
 {
@@ -74,13 +81,17 @@ else if (randompokemon == 3)
     Console.ReadLine();
     enemyHp = pinsirhp;
     enemyName = "Pinsir";
+    enemydamageMax = pinsirdamageMax;
 }
+
 else if (randompokemon == 4)
 {
+
     
     Console.ReadLine();
     enemyHp = sneaselhp;
     enemyName = "Sneasel";
+    enemydamageMax = sneaseldamageMax;
 }
 else
 {
@@ -88,6 +99,7 @@ else
     Console.ReadLine();
     enemyHp = sceptilehp;
     enemyName = "Sceptile";
+    enemydamageMax = sceptiledamageMax;
 }
 
 Console.WriteLine($"Du möter {enemyName}!");
@@ -98,6 +110,7 @@ Console.WriteLine("a) Pikachu, b) Scissor, c) Charizard , d) Victiny , e) Mew , 
 string answer1 = Console.ReadLine();
 string allianceName = "";
 int allianceHp = 0;
+int damageMax = 0;
 while (answer1 != "a" && answer1 != "b" && answer1 != "c" && answer1 != "d" && answer1 != "e" && answer1 != "f")
 {
     answer1 = Console.ReadLine();
@@ -108,42 +121,42 @@ if (answer1 == "a")
     Console.WriteLine("You choose Pikachu");
     allianceName = pikachu;
     allianceHp = pikachuhp;
-    damageMax1 = 20;
+    damageMax = pikachudamageMax;
 }
 else if (answer1 == "b")
 {
     Console.WriteLine("You choose Scissor");
     allianceName = scissor;
     allianceHp = scissorhp;
-    damageMax2 = 30;
+    damageMax = scissordamageMax;
 }
 else if (answer1 == "c")
 {
     Console.WriteLine("You choose Charizard");
     allianceName = charizard;
     allianceHp = charizardhp;
-    damageMax3 = 50;
+    damageMax = charizarddamageMax;
 }
 else if (answer1 == "d")
 {
     Console.WriteLine("You choose Victiny");
     allianceName = victiny;
     allianceHp = victinyhp;
-    damageMax4 = 100;
+    damageMax = victinydamageMax;
 }
 else if (answer1 == "e")
 {
     Console.WriteLine("You choose Mew");
     allianceName = mew;
     allianceHp = mewhp;
-    damageMax5 = 300;
+    damageMax = mewdamageMax;
 }
 else if (answer1 == "f")
 {
     Console.WriteLine("You choose Giratina");
     allianceName = giratina;
     allianceHp = giratinahp;
-    damageMax6 = 1000;
+    damageMax = giratinadamageMax;
 }
 Console.ReadLine();
 
@@ -151,12 +164,15 @@ Console.ReadLine();
 while (allianceHp > 0 && enemyHp > 0)
 {
     Console.WriteLine();
-    int dmg = Random.Shared.Next(0, 10);
+    int dmg = Random.Shared.Next(1, enemydamageMax);
     allianceHp -= dmg;
+    Console.WriteLine(allianceName + " has " + allianceHp + " hp left");
+
 
     Console.WriteLine();
-    int dmg2 = Random.Shared.Next(0, 8);
+    int dmg2 = Random.Shared.Next(1, damageMax);
     enemyHp -= dmg2;
+    Console.WriteLine(enemyName + " has " + enemyHp + " hp left");
 }
 
 if (allianceHp <= 0 && enemyHp <= 0)
